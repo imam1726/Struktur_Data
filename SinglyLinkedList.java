@@ -5,7 +5,7 @@ class Node {
     String nama;
     Node next;
     
-    public Node(String nim, String nama) {
+    Node(String nim, String nama) {
         this.nim = nim;
         this.nama = nama;
         this.next = null;
@@ -18,358 +18,289 @@ class LinkedListManager {
     private int count;
     
     public LinkedListManager() {
-        this.head = null;
-        this.tail = null;
-        this.count = 0;
+        head = null;
+        tail = null;
+        count = 0;
     }
     
-    // 1. Insert at beginning
-    public void insertBeginning(String nim, String nama) {
-        Node newNode = new Node(nim, nama);
+    public void insertAwal(String nim, String nama) {
+        Node node = new Node(nim, nama);
         if (head == null) {
-            head = newNode;
-            tail = newNode;
+            head = node;
+            tail = node;
         } else {
-            newNode.next = head;
-            head = newNode;
+            node.next = head;
+            head = node;
         }
         count++;
-        System.out.println("✓ Data berhasil ditambahkan di awal");
+        System.out.println("Data ditambahkan");
     }
     
-    // 2. Insert at given position (PERBAIKAN)
-    public void insertPosition(int pos, String nim, String nama) {
-        // Validasi posisi
+    public void insertPosisi(int pos, String nim, String nama) {
         if (pos < 1 || pos > count + 1) {
-            System.out.println("✗ Posisi tidak valid! Harus antara 1 - " + (count + 1));
+            System.out.println("Posisi tidak valid");
             return;
         }
         
-        // Kasus khusus: insert di awal
         if (pos == 1) {
-            insertBeginning(nim, nama);
+            insertAwal(nim, nama);
             return;
         }
         
-        // Kasus khusus: insert di akhir
         if (pos == count + 1) {
-            insertEnd(nim, nama);
+            insertAkhir(nim, nama);
             return;
         }
         
-        // Insert di posisi tengah
-        Node newNode = new Node(nim, nama);
+        Node node = new Node(nim, nama);
         Node current = head;
-        
-        // Traverse ke node sebelum posisi yang dituju
         for (int i = 1; i < pos - 1; i++) {
             current = current.next;
         }
-        
-        // Sisipkan node baru
-        newNode.next = current.next;
-        current.next = newNode;
+        node.next = current.next;
+        current.next = node;
         count++;
-        System.out.println("✓ Data berhasil ditambahkan di posisi " + pos);
+        System.out.println("Data ditambahkan");
     }
     
-    // 3. Insert at end
-    public void insertEnd(String nim, String nama) {
-        Node newNode = new Node(nim, nama);
+    public void insertAkhir(String nim, String nama) {
+        Node node = new Node(nim, nama);
         if (head == null) {
-            head = newNode;
-            tail = newNode;
+            head = node;
+            tail = node;
         } else {
-            tail.next = newNode;
-            tail = newNode;
+            tail.next = node;
+            tail = node;
         }
         count++;
-        System.out.println("✓ Data berhasil ditambahkan di akhir");
+        System.out.println("Data ditambahkan");
     }
     
-    // 4. Delete from beginning
-    public void deleteBeginning() {
+    public void hapusAwal() {
         if (head == null) {
-            System.out.println("✗ List kosong");
+            System.out.println("List kosong");
             return;
         }
         
-        System.out.println("✓ Menghapus: " + head.nim + " - " + head.nama);
+        System.out.println("Menghapus: " + head.nim + " - " + head.nama);
         head = head.next;
         if (head == null) {
             tail = null;
         }
         count--;
-        System.out.println("✓ Data berhasil dihapus dari awal");
+        System.out.println("Data dihapus");
     }
     
-    // 5. Delete at given position (PERBAIKAN)
-    public void deletePosition(int pos) {
+    public void hapusPosisi(int pos) {
         if (head == null) {
-            System.out.println("✗ List kosong");
+            System.out.println("List kosong");
             return;
         }
         
         if (pos < 1 || pos > count) {
-            System.out.println("✗ Posisi tidak valid! Harus antara 1 - " + count);
+            System.out.println("Posisi tidak valid");
             return;
         }
         
         if (pos == 1) {
-            deleteBeginning();
+            hapusAwal();
             return;
         }
         
         Node current = head;
-        Node prev = null;
-        
-        // Traverse ke posisi yang akan dihapus
-        for (int i = 1; i < pos; i++) {
-            prev = current;
+        for (int i = 1; i < pos - 1; i++) {
             current = current.next;
         }
         
-        System.out.println("✓ Menghapus: " + current.nim + " - " + current.nama);
-        prev.next = current.next;
+        Node hapus = current.next;
+        System.out.println("Menghapus: " + hapus.nim + " - " + hapus.nama);
+        current.next = hapus.next;
         
-        // Update tail jika menghapus node terakhir
-        if (prev.next == null) {
-            tail = prev;
+        if (current.next == null) {
+            tail = current;
         }
-        
         count--;
-        System.out.println("✓ Data di posisi " + pos + " berhasil dihapus");
+        System.out.println("Data dihapus");
     }
     
-    // 6. Delete from end (PERBAIKAN)
-    public void deleteEnd() {
+    public void hapusAkhir() {
         if (head == null) {
-            System.out.println("✗ List kosong");
+            System.out.println("List kosong");
             return;
         }
         
         if (head == tail) {
-            System.out.println("✓ Menghapus: " + head.nim + " - " + head.nama);
+            System.out.println("Menghapus: " + head.nim + " - " + head.nama);
             head = null;
             tail = null;
         } else {
             Node current = head;
-            // Traverse sampai sebelum node terakhir
             while (current.next != tail) {
                 current = current.next;
             }
-            System.out.println("✓ Menghapus: " + tail.nim + " - " + tail.nama);
+            System.out.println("Menghapus: " + tail.nim + " - " + tail.nama);
             current.next = null;
             tail = current;
         }
         count--;
-        System.out.println("✓ Data berhasil dihapus dari akhir");
+        System.out.println("Data dihapus");
     }
     
-    // 7. Delete first occurrence by NIM (PERBAIKAN)
-    public void deleteFirstOccurrence(String nim) {
+    public void hapusNIM(String nim) {
         if (head == null) {
-            System.out.println("✗ List kosong");
+            System.out.println("List kosong");
             return;
         }
         
-        // Cek apakah data di head
         if (head.nim.equals(nim)) {
-            deleteBeginning();
+            hapusAwal();
             return;
         }
         
         Node current = head;
-        Node prev = null;
-        boolean found = false;
-        
-        // Cari node dengan NIM yang sesuai
-        while (current != null) {
-            if (current.nim.equals(nim)) {
-                found = true;
-                break;
-            }
-            prev = current;
+        while (current.next != null && !current.next.nim.equals(nim)) {
             current = current.next;
         }
         
-        if (!found) {
-            System.out.println("✗ NIM " + nim + " tidak ditemukan");
+        if (current.next == null) {
+            System.out.println("NIM tidak ditemukan");
             return;
         }
         
-        System.out.println("✓ Menghapus: " + current.nim + " - " + current.nama);
-        prev.next = current.next;
+        Node hapus = current.next;
+        System.out.println("Menghapus: " + hapus.nim + " - " + hapus.nama);
+        current.next = hapus.next;
         
-        // Update tail jika menghapus node terakhir
-        if (prev.next == null) {
-            tail = prev;
+        if (current.next == null) {
+            tail = current;
         }
-        
         count--;
-        System.out.println("✓ Data dengan NIM " + nim + " berhasil dihapus");
+        System.out.println("Data dihapus");
     }
     
-    // 8. Show all data
-    public void showData() {
+    public void tampilData() {
         if (head == null) {
-            System.out.println("✗ List kosong");
+            System.out.println("List kosong");
             return;
         }
         
-        System.out.println("\n" + "=".repeat(50));
-        System.out.println("          DAFTAR MAHASISWA");
-        System.out.println("=".repeat(50));
-        System.out.println("Total data: " + count);
-        System.out.println("-".repeat(50));
-        
+        System.out.println("\nData Mahasiswa:");
         Node current = head;
         int no = 1;
         while (current != null) {
-            System.out.printf("%2d. NIM: %-12s | Nama: %-25s%n", 
-                no, current.nim, current.nama);
+            System.out.println(no + ". " + current.nim + " - " + current.nama);
             current = current.next;
             no++;
         }
-        System.out.println("=".repeat(50) + "\n");
+        System.out.println("Total: " + count + " data\n");
     }
     
-    // Method untuk mendapatkan jumlah data
     public int getCount() {
         return count;
     }
-    
-    public void displayMenu() {
-        System.out.println("\n" + "=".repeat(50));
-        System.out.println("        MENU SINGLY LINKED LIST");
-        System.out.println("=".repeat(50));
-        System.out.println("1. Insert at beginning");
-        System.out.println("2. Insert at given position");
-        System.out.println("3. Insert at end");
-        System.out.println("4. Delete from beginning");
-        System.out.println("5. Delete given position");
-        System.out.println("6. Delete from end");
-        System.out.println("7. Delete first occurrence (by NIM)");
-        System.out.println("8. Show data");
-        System.out.println("9. Exit");
-        System.out.println("-".repeat(50));
-    }
 }
 
+// CLASS UTAMA DENGAN MAIN METHOD
 public class SinglyLinkedList {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         LinkedListManager list = new LinkedListManager();
         
         while (true) {
-            list.displayMenu();
-            System.out.print("Pilih menu (1-9): ");
+            System.out.println("\n=== MENU ===");
+            System.out.println("1. Insert awal");
+            System.out.println("2. Insert posisi");
+            System.out.println("3. Insert akhir");
+            System.out.println("4. Hapus awal");
+            System.out.println("5. Hapus posisi");
+            System.out.println("6. Hapus akhir");
+            System.out.println("7. Hapus NIM");
+            System.out.println("8. Tampil data");
+            System.out.println("9. Keluar");
+            System.out.print("Pilih: ");
             
-            int choice;
+            int pilih;
             try {
-                choice = scanner.nextInt();
-                scanner.nextLine(); // Membersihkan buffer
-            } catch (Exception e) {
-                System.out.println("✗ Input tidak valid! Harap masukkan angka.");
-                scanner.nextLine(); // Membersihkan buffer
+                pilih = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Input harus angka!");
                 continue;
             }
             
-            switch (choice) {
-                case 1: // Insert at beginning
-                    System.out.println("\n--- INSERT DI AWAL ---");
-                    System.out.print("Masukkan NIM : ");
-                    String nim1 = scanner.nextLine();
-                    System.out.print("Masukkan Nama: ");
-                    String nama1 = scanner.nextLine();
-                    list.insertBeginning(nim1, nama1);
+            switch (pilih) {
+                case 1:
+                    System.out.print("NIM: ");
+                    String nim1 = sc.nextLine();
+                    System.out.print("Nama: ");
+                    String nama1 = sc.nextLine();
+                    list.insertAwal(nim1, nama1);
                     break;
                     
-                case 2: // Insert at given position
-                    System.out.println("\n--- INSERT DI POSISI TERTENTU ---");
-                    System.out.print("Masukkan posisi (1 - " + (list.getCount() + 1) + "): ");
+                case 2:
+                    System.out.print("Posisi (1 - " + (list.getCount() + 1) + "): ");
                     int pos;
                     try {
-                        pos = scanner.nextInt();
-                        scanner.nextLine();
-                    } catch (Exception e) {
-                        System.out.println("✗ Posisi harus angka!");
-                        scanner.nextLine();
-                        break;
+                        pos = Integer.parseInt(sc.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Posisi harus angka!");
+                        continue;
                     }
-                    
-                    System.out.print("Masukkan NIM : ");
-                    String nim2 = scanner.nextLine();
-                    System.out.print("Masukkan Nama: ");
-                    String nama2 = scanner.nextLine();
-                    list.insertPosition(pos, nim2, nama2);
+                    System.out.print("NIM: ");
+                    String nim2 = sc.nextLine();
+                    System.out.print("Nama: ");
+                    String nama2 = sc.nextLine();
+                    list.insertPosisi(pos, nim2, nama2);
                     break;
                     
-                case 3: // Insert at end
-                    System.out.println("\n--- INSERT DI AKHIR ---");
-                    System.out.print("Masukkan NIM : ");
-                    String nim3 = scanner.nextLine();
-                    System.out.print("Masukkan Nama: ");
-                    String nama3 = scanner.nextLine();
-                    list.insertEnd(nim3, nama3);
+                case 3:
+                    System.out.print("NIM: ");
+                    String nim3 = sc.nextLine();
+                    System.out.print("Nama: ");
+                    String nama3 = sc.nextLine();
+                    list.insertAkhir(nim3, nama3);
                     break;
                     
-                case 4: // Delete from beginning
-                    System.out.println("\n--- HAPUS DARI AWAL ---");
-                    list.deleteBeginning();
+                case 4:
+                    list.hapusAwal();
                     break;
                     
-                case 5: // Delete at given position
-                    System.out.println("\n--- HAPUS DI POSISI TERTENTU ---");
+                case 5:
                     if (list.getCount() == 0) {
-                        System.out.println("✗ List kosong!");
-                        break;
+                        System.out.println("List kosong!");
+                        continue;
                     }
-                    
-                    System.out.print("Masukkan posisi yang akan dihapus (1 - " + list.getCount() + "): ");
-                    int delPos;
+                    System.out.print("Posisi (1 - " + list.getCount() + "): ");
+                    int posHapus;
                     try {
-                        delPos = scanner.nextInt();
-                        scanner.nextLine();
-                    } catch (Exception e) {
-                        System.out.println("✗ Posisi harus angka!");
-                        scanner.nextLine();
-                        break;
+                        posHapus = Integer.parseInt(sc.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Posisi harus angka!");
+                        continue;
                     }
-                    list.deletePosition(delPos);
+                    list.hapusPosisi(posHapus);
                     break;
                     
-                case 6: // Delete from end
-                    System.out.println("\n--- HAPUS DARI AKHIR ---");
-                    list.deleteEnd();
+                case 6:
+                    list.hapusAkhir();
                     break;
                     
-                case 7: // Delete first occurrence by NIM
-                    System.out.println("\n--- HAPUS BERDASARKAN NIM ---");
-                    System.out.print("Masukkan NIM yang akan dihapus: ");
-                    String delNim = scanner.nextLine();
-                    list.deleteFirstOccurrence(delNim);
+                case 7:
+                    System.out.print("NIM yang akan dihapus: ");
+                    String nimHapus = sc.nextLine();
+                    list.hapusNIM(nimHapus);
                     break;
                     
-                case 8: // Show data
-                    System.out.println("\n--- TAMPILKAN DATA ---");
-                    list.showData();
+                case 8:
+                    list.tampilData();
                     break;
                     
-                case 9: // Exit
-                    System.out.println("\n" + "=".repeat(50));
-                    System.out.println("     TERIMA KASIH! PROGRAM SELESAI");
-                    System.out.println("=".repeat(50));
-                    scanner.close();
+                case 9:
+                    System.out.println("Program selesai!");
+                    sc.close();
                     return;
                     
                 default:
-                    System.out.println("\n✗ Pilihan tidak valid! Silakan pilih 1-9.");
-            }
-            
-            // Tampilkan jumlah data setelah operasi (kecuali show data)
-            if (choice != 8 && choice != 9) {
-                System.out.println("ℹ Jumlah data sekarang: " + list.getCount());
+                    System.out.println("Pilihan tidak valid!");
             }
         }
     }
