@@ -9,3 +9,6 @@ https://youtu.be/DhveIz8-S0Q
 Circular Doubly Linked List (Infinite loop and Fixed show in) :
 https://chat.deepseek.com/share/z3jtmlesdth9uv96dg
 https://youtu.be/o9abOMbx2O8
+
+Stack Arithmetic :
+https://chat.deepseek.com/share/4p1oh86hbzsr8dnhxs
