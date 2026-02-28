@@ -12,3 +12,4 @@ https://youtu.be/o9abOMbx2O8
 
 Stack Arithmetic :
 https://chat.deepseek.com/share/4p1oh86hbzsr8dnhxs
+https://youtu.be/KHg2zpMo9lk
