@@ -13,3 +13,7 @@ https://youtu.be/o9abOMbx2O8
 Stack Arithmetic :
 https://chat.deepseek.com/share/4p1oh86hbzsr8dnhxs
 https://youtu.be/KHg2zpMo9lk
+
+Binary Search Tree
+https://chat.deepseek.com/share/1gfdpaagz52cb3onyl
+https://youtu.be/IGJGe_okF_8
