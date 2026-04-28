@@ -17,12 +17,8 @@ class Stack:
         self.items = []
     
     def display(self):
-        return [self._format_angka(x) for x in self.items]
-    
-    def _format_angka(self, nilai):
-        if nilai.is_integer():
-            return int(nilai)
-        return nilai
+        return [format_angka(x) for x in self.items]
+
 
 def prioritas(op):
     if op in ('+', '-'):
@@ -33,8 +29,10 @@ def prioritas(op):
         return 3
     return 0
 
+
 def is_operator(token):
     return token in ('+', '-', '*', '/', '^')
+
 
 def is_operand(token):
     try:
@@ -43,18 +41,23 @@ def is_operand(token):
     except ValueError:
         return False
 
+
 def format_angka(nilai):
-    if nilai.is_integer():
+    """Format angka: integer kalau bulat, float dengan trailing zero dihilangkan"""
+    # Konversi ke float dulu untuk cek .is_integer()
+    if isinstance(nilai, float) and nilai.is_integer():
         return str(int(nilai))
-    else:
+    elif isinstance(nilai, float):
         # Hilangkan trailing zeros
-        s = str(nilai)
-        if '.' in s:
-            s = s.rstrip('0').rstrip('.')
+        s = f"{nilai:.10f}".rstrip('0').rstrip('.')
         return s
+    else:
+        return str(nilai)
+
 
 def buat_garis(teks):
     return "-" * len(teks)
+
 
 def main():
     judul = "STACK ARITHMETIC"
@@ -171,6 +174,7 @@ def main():
     hasil_akhir = eval_stack.pop()
     print(f"\nHasil Akhir: {format_angka(hasil_akhir)}")
     print(garis)
+
 
 if __name__ == "__main__":
     main()
