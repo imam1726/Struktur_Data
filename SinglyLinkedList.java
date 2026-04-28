@@ -116,9 +116,11 @@ class LinkedListManager {
         System.out.println("Menghapus: " + hapus.nim + " - " + hapus.nama);
         current.next = hapus.next;
         
-        if (current.next == null) {
+        // FIX: Update tail kalau yang dihapus adalah tail
+        if (hapus == tail) {
             tail = current;
         }
+        
         count--;
         System.out.println("Data dihapus");
     }
@@ -152,6 +154,7 @@ class LinkedListManager {
             return;
         }
         
+        // Kalau NIM ada di head
         if (head.nim.equals(nim)) {
             hapusAwal();
             return;
@@ -171,9 +174,11 @@ class LinkedListManager {
         System.out.println("Menghapus: " + hapus.nim + " - " + hapus.nama);
         current.next = hapus.next;
         
-        if (current.next == null) {
+        // FIX: Update tail kalau yang dihapus adalah tail
+        if (hapus == tail) {
             tail = current;
         }
+        
         count--;
         System.out.println("Data dihapus");
     }
