@@ -35,18 +35,36 @@ class MinHeap:
             self._heapify_down(smallest)
     
     def delete_by_id(self, id):
-        """Hapus data dari min-heap berdasarkan ID"""
+        """Hapus data dari min-heap berdasarkan ID (PERBAIKAN)"""
+        # Cari index data yang mau dihapus
+        index_to_delete = -1
         for i in range(len(self.heap)):
             if self.heap[i].id == id:
-                self.heap[i] = self.heap[-1]
-                self.heap.pop()
-                self._heapify_down(i)
-                self._heapify_up(i)
-                return True
-        return False
+                index_to_delete = i
+                break
+        
+        if index_to_delete == -1:
+            return False
+        
+        # Swap dengan data terakhir
+        last_index = len(self.heap) - 1
+        self.heap[index_to_delete], self.heap[last_index] = self.heap[last_index], self.heap[index_to_delete]
+        
+        # Hapus data terakhir
+        self.heap.pop()
+        
+        # Perbaiki heap jika masih ada data
+        if index_to_delete < len(self.heap):
+            self._heapify_down(index_to_delete)
+            self._heapify_up(index_to_delete)
+        
+        return True
     
     def get_sorted(self):
         """Mendapatkan data urut ascending (tanpa merusak heap asli)"""
+        if not self.heap:
+            return []
+        
         temp = self.heap.copy()
         result = []
         while temp:
@@ -69,10 +87,6 @@ class MinHeap:
                 else:
                     break
         return result
-    
-    def display(self):
-        for node in self.heap:
-            print(f"{node.id}\t\t{node.nama}")
 
 class MaxHeap:
     def __init__(self):
@@ -104,18 +118,36 @@ class MaxHeap:
             self._heapify_down(largest)
     
     def delete_by_id(self, id):
-        """Hapus data dari max-heap berdasarkan ID"""
+        """Hapus data dari max-heap berdasarkan ID (PERBAIKAN)"""
+        # Cari index data yang mau dihapus
+        index_to_delete = -1
         for i in range(len(self.heap)):
             if self.heap[i].id == id:
-                self.heap[i] = self.heap[-1]
-                self.heap.pop()
-                self._heapify_down(i)
-                self._heapify_up(i)
-                return True
-        return False
+                index_to_delete = i
+                break
+        
+        if index_to_delete == -1:
+            return False
+        
+        # Swap dengan data terakhir
+        last_index = len(self.heap) - 1
+        self.heap[index_to_delete], self.heap[last_index] = self.heap[last_index], self.heap[index_to_delete]
+        
+        # Hapus data terakhir
+        self.heap.pop()
+        
+        # Perbaiki heap jika masih ada data
+        if index_to_delete < len(self.heap):
+            self._heapify_down(index_to_delete)
+            self._heapify_up(index_to_delete)
+        
+        return True
     
     def get_sorted(self):
         """Mendapatkan data urut descending (tanpa merusak heap asli)"""
+        if not self.heap:
+            return []
+        
         temp = self.heap.copy()
         result = []
         while temp:
@@ -138,24 +170,20 @@ class MaxHeap:
                 else:
                     break
         return result
-    
-    def display(self):
-        for node in self.heap:
-            print(f"{node.id}\t\t{node.nama}")
 
 class HeapDataStructure:
     def __init__(self):
         self.minHeap = MinHeap()
         self.maxHeap = MaxHeap()
     
-    # (1) Tambah data ke min-heap dan max-heap sekaligus
     def tambahData(self, id, nama):
+        """Tambah data ke min-heap dan max-heap sekaligus"""
         self.minHeap.insert(id, nama)
         self.maxHeap.insert(id, nama)
         print(f"✓ Data berhasil ditambahkan: ({id}, {nama})")
     
-    # (2) Tampilkan data ascending menggunakan Min-Heap
     def tampilAscending(self):
+        """Tampilkan data ascending menggunakan Min-Heap"""
         if not self.minHeap.heap:
             print("\n⚠ Min-Heap kosong!")
             return
@@ -166,8 +194,8 @@ class HeapDataStructure:
         for node in sorted_data:
             print(f"{node.id}\t\t{node.nama}")
     
-    # (3) Tampilkan data descending menggunakan Max-Heap
     def tampilDescending(self):
+        """Tampilkan data descending menggunakan Max-Heap"""
         if not self.maxHeap.heap:
             print("\n⚠ Max-Heap kosong!")
             return
@@ -178,22 +206,26 @@ class HeapDataStructure:
         for node in sorted_data:
             print(f"{node.id}\t\t{node.nama}")
     
-    # (4) Hapus data dari min-heap
     def hapusDariMinHeap(self, id):
+        """Hapus data dari min-heap"""
         if self.minHeap.delete_by_id(id):
-            print(f"✓ Data ID {id} berhasil dihapus dari Min-Heap")
+            # Hapus juga dari max-heap biar konsisten
+            self.maxHeap.delete_by_id(id)
+            print(f"✓ Data ID {id} berhasil dihapus dari Min-Heap & Max-Heap")
         else:
-            print(f"✗ Data ID {id} tidak ditemukan di Min-Heap")
+            print(f"✗ Data ID {id} tidak ditemukan")
     
-    # (5) Hapus data dari max-heap
     def hapusDariMaxHeap(self, id):
+        """Hapus data dari max-heap"""
         if self.maxHeap.delete_by_id(id):
-            print(f"✓ Data ID {id} berhasil dihapus dari Max-Heap")
+            # Hapus juga dari min-heap biar konsisten
+            self.minHeap.delete_by_id(id)
+            print(f"✓ Data ID {id} berhasil dihapus dari Max-Heap & Min-Heap")
         else:
-            print(f"✗ Data ID {id} tidak ditemukan di Max-Heap")
+            print(f"✗ Data ID {id} tidak ditemukan")
     
-    # Load data awal dari CSV (path langsung di kodingan)
     def loadFromCSV(self):
+        """Load data awal dari CSV (path langsung di kodingan)"""
         filename = "/Users/clumsy/coding/struktur-data-py-java/HeapDataStructure/data.csv"
         count = 0
         try:
@@ -219,7 +251,6 @@ class HeapDataStructure:
 def main():
     heap = HeapDataStructure()
     
-    # Starting data awal - load dari CSV
     print("Memuat data dari file CSV...")
     heap.loadFromCSV()
     
@@ -238,19 +269,28 @@ def main():
         pilihan = input("Pilihan: ")
         
         if pilihan == '1':
-            id = int(input("Masukkan ID: "))
-            nama = input("Masukkan Nama: ")
-            heap.tambahData(id, nama)
+            try:
+                id = int(input("Masukkan ID: "))
+                nama = input("Masukkan Nama: ")
+                heap.tambahData(id, nama)
+            except ValueError:
+                print("ID harus berupa angka!")
         elif pilihan == '2':
             heap.tampilAscending()
         elif pilihan == '3':
             heap.tampilDescending()
         elif pilihan == '4':
-            id = int(input("Masukkan ID yang akan dihapus dari Min-Heap: "))
-            heap.hapusDariMinHeap(id)
+            try:
+                id = int(input("Masukkan ID yang akan dihapus dari Min-Heap: "))
+                heap.hapusDariMinHeap(id)
+            except ValueError:
+                print("ID harus berupa angka!")
         elif pilihan == '5':
-            id = int(input("Masukkan ID yang akan dihapus dari Max-Heap: "))
-            heap.hapusDariMaxHeap(id)
+            try:
+                id = int(input("Masukkan ID yang akan dihapus dari Max-Heap: "))
+                heap.hapusDariMaxHeap(id)
+            except ValueError:
+                print("ID harus berupa angka!")
         elif pilihan == '0':
             print("Terima kasih!")
             break
