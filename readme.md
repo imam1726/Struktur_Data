@@ -1,3 +1,5 @@
+GitHub Link : https://github.com/imam1726/Struktur_Data?authuser=1
+
 Primitif Array :
 https://chat.deepseek.com/share/6c77mlphvzq6yqv49q
 https://youtu.be/BCiGiC9pyow
@@ -14,10 +16,10 @@ Stack Arithmetic :
 https://chat.deepseek.com/share/4p1oh86hbzsr8dnhxs
 https://youtu.be/KHg2zpMo9lk
 
-Binary Search Tree
+Binary Search Tree (Data diload dari path file "data.csv") :
 https://chat.deepseek.com/share/1gfdpaagz52cb3onyl
 https://youtu.be/IGJGe_okF_8
 
-HeapDataStructure
+HeapDataStructure (Data diload dari path file "data.csv") :
 https://chat.deepseek.com/share/txnq741en1wq4473uy
 https://youtu.be/b9yV9bBS0O8
