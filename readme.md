@@ -17,3 +17,7 @@ https://youtu.be/KHg2zpMo9lk
 Binary Search Tree
 https://chat.deepseek.com/share/1gfdpaagz52cb3onyl
 https://youtu.be/IGJGe_okF_8
+
+HeapDataStructure
+https://chat.deepseek.com/share/txnq741en1wq4473uy
+https://youtu.be/b9yV9bBS0O8
