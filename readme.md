@@ -23,3 +23,7 @@ https://youtu.be/IGJGe_okF_8
 HeapDataStructure (Data diload dari path file "data.csv") :
 https://chat.deepseek.com/share/txnq741en1wq4473uy
 https://youtu.be/b9yV9bBS0O8
+
+HashCollisionTechniques
+
+https://chat.deepseek.com/share/djwvpwqayc8t137frl
