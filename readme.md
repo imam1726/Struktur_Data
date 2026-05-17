@@ -8,7 +8,7 @@ Linked List :
 https://chat.deepseek.com/share/tnd5nudw64sc3p40zg
 https://youtu.be/DhveIz8-S0Q
 
-Circular Doubly Linked List (Infinite loop and Fixed show in) :
+Circular Doubly Linked List (Infinite Loop and Fixed Show In) :
 https://chat.deepseek.com/share/z3jtmlesdth9uv96dg
 https://youtu.be/o9abOMbx2O8
 
@@ -24,6 +24,5 @@ HeapDataStructure (Data diload dari path file "data.csv") :
 https://chat.deepseek.com/share/txnq741en1wq4473uy
 https://youtu.be/b9yV9bBS0O8
 
-HashCollisionTechniques
-
+HashCollisionTechniques (Table Chaining, Linear Probing, Quadratic Probing, Double Hashing)
 https://chat.deepseek.com/share/djwvpwqayc8t137frl
