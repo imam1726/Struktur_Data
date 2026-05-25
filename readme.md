@@ -24,5 +24,10 @@ HeapDataStructure (Data diload dari path file "data.csv") :
 https://chat.deepseek.com/share/txnq741en1wq4473uy
 https://youtu.be/b9yV9bBS0O8
 
-HashCollisionTechniques (Table Chaining, Linear Probing, Quadratic Probing, Double Hashing)
+HashCollisionTechniques (Table Chaining, Linear Probing, Quadratic Probing, Double Hashing) :
 https://chat.deepseek.com/share/djwvpwqayc8t137frl
+https://youtu.be/86aJ9GD_2f0
+
+Graph :
+https://gemini.google.com/share/5ec31371dcfb
+https://youtu.be/lnVE652lEPg
