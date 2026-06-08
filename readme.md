@@ -31,3 +31,7 @@ https://youtu.be/86aJ9GD_2f0
 Graph :
 https://gemini.google.com/share/5ec31371dcfb
 https://youtu.be/lnVE652lEPg
+
+Matrix Operations :
+https://chat.deepseek.com/share/9m3rabyowrgiaclzna
+https://youtu.be/TxncFNeqLQA
